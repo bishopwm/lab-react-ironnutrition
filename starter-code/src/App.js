@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import foods from './foods.json';
+import 'bulma/css/bulma.css';
 
 class App extends Component {
 
@@ -9,12 +10,7 @@ class App extends Component {
     form: "",
     newFoodName: "",
     newFoodCal: 0,
-    newFoodImg: null,
-    newFoodObj: {
-      newFoodName: "",
-      newFoodCal: 0,
-      newFoodImg: null
-    }
+    newFoodImg: ""
   }
 
   handleChangeName = (e) => {
@@ -40,10 +36,20 @@ class App extends Component {
 
   addFood = (e) => {
     e.preventDefault();
-    console.log(this.state)
+    let newFood = {
+      name: this.state.newFoodName,
+      calories: this.state.newFoodCal,
+      image: this.state.newFoodImg,
+      quantity: 1
+    };
+    console.log(newFood);
+    let allFoodsCopy = [...this.state.allFoods];
+    allFoodsCopy.push(newFood)
+    console.log(allFoodsCopy)
     this.setState({
-      allFoods: [...this.state.allFoods, [this.state.newFoodName, this.state.newFoodCal, this.state.newFoodImg]]
+      allFoods: allFoodsCopy
     })
+    console.log(this.state.allFoods)
   }
 
   displayAllFoods = () => {
@@ -56,14 +62,14 @@ class App extends Component {
               <article className="media">
                 <div className="media-left">
                   <figure className="image is-64x64">
-                  <img style={{width: '6%'}} src={this.state.allFoods[i].image} alt=""/>
+                  <img style={{width: '80%'}} src={this.state.allFoods[i].image} alt=""/>
                   </figure>
                 </div>
                 <div className="media-content">
                   <div className="content">
                     <p>
                       <strong>{this.state.allFoods[i].name}</strong> <br />
-                      <small>{this.state.allFoods[i].calories}</small>
+                      <small>{this.state.allFoods[i].calories} cal</small>
                     </p>
                   </div>
                 </div>
@@ -109,7 +115,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.foods)
     return (
       <div className="App">
         <h1>Iron Nutrition</h1>
