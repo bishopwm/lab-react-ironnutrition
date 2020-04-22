@@ -58,7 +58,7 @@ class App extends Component {
     console.log("displaying form!")
     let emptyForm = [];
     emptyForm.push(
-      <form className="add-food-form">
+      <form key={0} className="add-food-form">
         <input placeholder="Food Name" type="text"></input><br></br>
         <input placeholder="Food Calories" type="number"></input><br></br>
         <input placeholder="Food Image" type="url"></input>
