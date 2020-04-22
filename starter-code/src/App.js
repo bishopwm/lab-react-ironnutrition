@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import foods from './foods.json';
 import 'bulma/css/bulma.css';
+import Search from './Search';
 
 class App extends Component {
 
@@ -11,6 +12,15 @@ class App extends Component {
     newFoodName: "",
     newFoodCal: 0,
     newFoodImg: ""
+  }
+
+  search = (e) => {
+    let foodsArray = [...foods].filter(eachFood => {
+      return eachFood.name.toLowerCase().includes(e.target.value)
+    })
+    this.setState({
+      allFoods: foodsArray
+    })
   }
 
   handleChangeName = (e) => {
@@ -116,6 +126,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Iron Nutrition</h1>
+        <Search search={this.search} />
         {this.state.form}
         <button onClick={this.displayAddFoodForm}>Add Food</button>
         <div>
