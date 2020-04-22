@@ -26,3 +26,16 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.foods-list {
+  list-style-type: none;
+}
+
+.food-image {
+  width: 6%;
+  border-radius: 5px;
+}
+
+.food-list-item {
+  margin-top: 30px;
+}
