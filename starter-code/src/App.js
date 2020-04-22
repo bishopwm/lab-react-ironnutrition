@@ -5,7 +5,8 @@ import foods from './foods.json';
 class App extends Component {
 
   state = {
-    allFoods: [...foods]
+    allFoods: [...foods],
+    form: ""
   }
 
   displayAllFoods = () => {
@@ -53,18 +54,30 @@ class App extends Component {
     return <ul className = "foods-list">{foodsList}</ul>
   }
 
+  displayAddFoodForm = () => {
+    console.log("displaying form!")
+    let emptyForm = [];
+    emptyForm.push(
+      <form className="add-food-form">
+        <input placeholder="Food Name" type="text"></input><br></br>
+        <input placeholder="Food Calories" type="number"></input><br></br>
+        <input placeholder="Food Image" type="url"></input>
+        <input type="submit"></input><br></br>
+      </form>
+    )
+    this.setState({
+      form: emptyForm
+    })
+  }
+
 
   render() {
     console.log(this.state.foods)
     return (
       <div className="App">
         <h1>Iron Nutrition</h1>
-        <form>
-          <input placeholder="Food Name" type="text"></input><br></br>
-          <input placeholder="Food Calories" type="number"></input><br></br>
-          <input placeholder="Food Image" type="url"></input><br></br>
-        </form>
-        <button onClick={this.addFood}>Add Food</button>
+        {this.state.form}
+        <button onClick={this.displayAddFoodForm}>Add Food</button>
         <div>
         {this.displayAllFoods()}
       </div>
