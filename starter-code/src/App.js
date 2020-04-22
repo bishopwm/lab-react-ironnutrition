@@ -6,7 +6,44 @@ class App extends Component {
 
   state = {
     allFoods: [...foods],
-    form: ""
+    form: "",
+    newFoodName: "",
+    newFoodCal: 0,
+    newFoodImg: null,
+    newFoodObj: {
+      newFoodName: "",
+      newFoodCal: 0,
+      newFoodImg: null
+    }
+  }
+
+  handleChangeName = (e) => {
+    console.log("handling name change!" + e.target.value)
+    this.setState({
+      newFoodName: e.target.value
+    })
+  }
+
+  handleChangeCal = (e) => {
+    console.log("handling cal change!" + e.target.value)
+    this.setState({
+      newFoodCal: e.target.value
+    })
+  }
+
+  handleChangeImg = (e) => {
+    console.log("handling img change!" + e.target.value)
+    this.setState({
+      newFoodImg: e.target.value
+    })
+  }
+
+  addFood = (e) => {
+    e.preventDefault();
+    console.log(this.state)
+    this.setState({
+      allFoods: [...this.state.allFoods, [this.state.newFoodName, this.state.newFoodCal, this.state.newFoodImg]]
+    })
   }
 
   displayAllFoods = () => {
@@ -58,10 +95,10 @@ class App extends Component {
     console.log("displaying form!")
     let emptyForm = [];
     emptyForm.push(
-      <form key={0} className="add-food-form">
-        <input placeholder="Food Name" type="text"></input><br></br>
-        <input placeholder="Food Calories" type="number"></input><br></br>
-        <input placeholder="Food Image" type="url"></input>
+      <form onSubmit={this.addFood} key={0} className="add-food-form">
+        <input onChange={this.handleChangeName} placeholder="Food Name" type="text"></input><br></br>
+        <input onChange={this.handleChangeCal} placeholder="Food Calories" type="number"></input><br></br>
+        <input onChange={this.handleChangeImg} placeholder="Food Image" type="url"></input>
         <input type="submit"></input><br></br>
       </form>
     )
