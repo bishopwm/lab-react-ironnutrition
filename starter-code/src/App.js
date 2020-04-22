@@ -42,14 +42,12 @@ class App extends Component {
       image: this.state.newFoodImg,
       quantity: 1
     };
-    console.log(newFood);
     let allFoodsCopy = [...this.state.allFoods];
     allFoodsCopy.push(newFood)
-    console.log(allFoodsCopy)
     this.setState({
-      allFoods: allFoodsCopy
+      allFoods: allFoodsCopy,
+      form: ""
     })
-    console.log(this.state.allFoods)
   }
 
   displayAllFoods = () => {
